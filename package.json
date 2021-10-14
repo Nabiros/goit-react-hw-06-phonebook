@@ -5,6 +5,7 @@
   "homepage": "https://Nabiros.github.io/goit-react-hw-06-phonebook",
   "dependencies": {
     "@emotion/styled": "^11.3.0",
+    "@reduxjs/toolkit": "^1.6.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -14,7 +15,11 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-loader-spinner": "^4.0.0",
+    "react-redux": "^7.2.5",
     "react-scripts": "4.0.3",
+    "redux": "^4.1.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-persist": "^6.0.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.4",
     "web-vitals": "^1.1.2"
