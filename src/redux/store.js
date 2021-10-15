@@ -10,15 +10,16 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-
-const rootReducer = combineReducers({
-  // contacts: contactsReducer,
-});
+import contactsReducer from "./PhoneBook/reducers";
 
 const persistConfig = {
-  key: "root",
+  key: "contacts",
   storage,
 };
+
+const rootReducer = combineReducers({
+  contacts: contactsReducer,
+});
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

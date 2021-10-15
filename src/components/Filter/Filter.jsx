@@ -1,25 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { Wrapper, Label, Input } from "./Filter.styled";
+import { connect } from "react-redux";
+import { getFilteredName } from "../../redux/PhoneBook/actions";
 
-    
-export const Filter = ({ value, onChange, onBlur }) => {
-    return (
-        <Wrapper>
-            <Label htmlFor="filter">Find contacts by name</Label>
-            <Input
-                type="text"
-                name="filter"
-                value={value}
-                onChange={onChange}
-                onBlur={onBlur}
-            />
-        </Wrapper>
-    );
-};
+const Filter = ({ value, onChange }) => (
+  <Wrapper>
+    <Label htmlFor="filter">Find contacts by name</Label>
+    <Input type="text" name="filter" value={value} onChange={onChange} />
+  </Wrapper>
+);
 
-Filter.propTypes = {
-    value: PropTypes.string,
-    onChange: PropTypes.func,
-    onBlur: PropTypes.func,
-}
+const mapStateToProps = state => ({
+  value: state.contacts.filter,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onChange: e => dispatch(getFilteredName(e.target.value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

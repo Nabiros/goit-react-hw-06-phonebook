@@ -5,12 +5,12 @@ export const Button = styled.button`
   padding: 10px;
   margin-top: 8px;
   font-size: 14px;
-  background-color: #0eebdc;
+  background-color: #ebdc0e;
   border: none;
   border-radius: 10px;
   &:hover,
   &:active {
     cursor: pointer;
-    background-color: #15c2b6;
+    background-color: #c2bc15;
   }
 `;

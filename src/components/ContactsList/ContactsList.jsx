@@ -1,33 +1,40 @@
-import React from "react";
-import PropTypes from 'prop-types';
 import { List, ListItem } from "./ContactsList.styled";
 import { Button } from '../Buttons/Buttons.styled';
+import { connect } from "react-redux";
+import { removeContact } from "../../redux/PhoneBook/actions";
 
-
-export const ContactsList = ({ contacts, deleteId }) => (
+function ContactsList({ contacts, deleteId }) {
+  return (
     <div>
-        <List>
-            {contacts.map(({ id, name, number }) => (
-                <ListItem key={id}>
-                    {name} - {number}{" "}
-                    <Button type="button" onClick={() => deleteId(id)}>
-                        Delete
-                    </Button>
-                </ListItem>
-            ))}
-        </List>
+      <List>
+        {contacts.map(contact => {
+          const { id, name, number } = contact;
+          return (
+            <ListItem key={id}>
+              {name} - {number}{' '}
+              <Button type="button" onClick={() => deleteId(id)}>
+                Delete
+              </Button>
+            </ListItem>
+          );
+        })}
+      </List>
     </div>
-);
-    
+  );
+}
 
-
-ContactsList.propTypes = {
-    contacts: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.string,
-            name: PropTypes.string,
-            number: PropTypes.string,
-        }),
-    ),
-    deleteId: PropTypes.func,
+const nameFilter = state => {
+  return state.contacts.items.filter(contact =>
+    contact.name.toLowerCase().includes(state.contacts.filter.toLowerCase()),
+  );
 };
+
+const mapStateToProps = state => ({
+  contacts: nameFilter(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  deleteId: id => dispatch(removeContact(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsList);
