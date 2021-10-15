@@ -41,15 +41,15 @@ function ContactsForm() {
   };
 
   const newContact = () => {
-    const addContact = {
+    const addToContact = {
       name,
       number,
     };
     stateContact.some(
-      contact => contact.name.toLowerCase() === addContact.name.toLowerCase(),
+      contact => contact.name.toLowerCase() === addToContact.name.toLowerCase(),
     )
-      ? notification(addContact.name)
-      : dispatch(addContact(addContact));
+      ? notification(addToContact.name)
+      : dispatch(addContact(addToContact));
   };
 
   const notification = name =>
